@@ -1,0 +1,131 @@
+---
+import Page from "../components/Page.astro";
+import { STORE, PRICE_DATE, disciplines, instructors, pools, faq } from "../data/store";
+const worries = faq.filter((f) => ["수영 못해도 할 수 있어요?", "물 공포증이 있어도 할 수 있나요?", "무엇을 챙겨 가요?", "아이는 몇 살부터 돼요?"].includes(f.q));
+---
+<Page id="home">
+  <section class="hero">
+    <img src="/images/free-lv4-crop.jpg" alt="" fetchpriority="high" />
+    <div class="in">
+      <ul class="kinds"><li>프리다이빙</li><li>스쿠버다이빙</li><li>머메이드</li></ul>
+      <h1>늘 보던 바다를,<br /><span>나의 취미로.</span></h1>
+      <p class="lead">첫 체험부터 새로운 취미의 시작까지.<br />서울·경기에서 다이브팀 스머프와 다이빙을 배워보세요.</p>
+      <div class="btns">
+        <a class="btn btn-y" href="/programs">체험 프로그램 보기</a>
+        <a class="btn btn-line" href="#pools">수업 장소 확인하기</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats"><div class="in">
+    <ul>
+      <li><b>599개</b><span>프리다이빙 체험 리뷰 · 평점 4.95</span></li>
+      <li><b>3명</b><span>강사 트레이너 2명 · 강사 1명</span></li>
+      <li><b>7곳</b><span>서울·경기 다이빙 풀 · 최대 수심 36m</span></li>
+      <li><b>4개 단체</b><span>PADI · AIDA · PSA · SSI 자격</span></li>
+    </ul>
+    <p class="note">리뷰 수는 {PRICE_DATE} 스마트스토어 기준이에요.</p>
+  </div></div>
+
+  <section class="sec">
+    <div class="in">
+      <span class="eyebrow">FIRST DIVE</span>
+      <h2>해보고 싶은 마음,<br /><em>궁금한 것도 많으니까.</em></h2>
+      <p class="sub">수영 실력, 준비물, 수업 장소와 비용까지. 첫 다이빙 전에 궁금한 내용을 확인해보세요.</p>
+      <div class="worry">
+        {worries.map((w) => <details><summary>{w.q}</summary><p>{w.a}</p></details>)}
+      </div>
+      <p class="note"><a href="/programs#faq">자주 묻는 질문 더 보기 →</a></p>
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="in">
+      <div class="head-row">
+        <div>
+          <span class="eyebrow">PROGRAMS</span>
+          <h2>어떤 다이빙부터<br />시작해볼까요?</h2>
+        </div>
+        <p class="sub">종목마다 체험으로 시작해 강사 과정까지 이어 갈 수 있어요.</p>
+      </div>
+      <div class="kinds-grid">
+        {disciplines.map((d) => (
+          <a class="kind" href={"/programs#" + d.id}>
+            <img src={d.img} alt={d.name + " 수업 장면"} loading="lazy" width="808" height="500" />
+            <div class="body">
+              <h3>{d.name}</h3>
+              <p class="tag">{d.tagline}</p>
+              <ol>{d.path.map((s) => <li>{s}</li>)}</ol>
+              <p class="from">체험 <b>{d.from}부터</b></p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p class="note">가격은 {PRICE_DATE} 스마트스토어 판매가예요. 풀장 입장료는 따로예요.</p>
+    </div>
+  </section>
+
+  <section class="sec dark">
+    <div class="in">
+      <span class="eyebrow">INSTRUCTORS</span>
+      <h2>누구에게 배우는지도<br /><em>중요하니까</em></h2>
+      <p class="sub">강사 트레이너 2명과 강사 1명이 PADI · AIDA · PSA · SSI 과정을 가르쳐요.</p>
+      <div class="team">
+        {instructors.map((c) => (
+          <article class="coach">
+            <div class="ava" aria-hidden="true">{c.name.slice(0, 1)}</div>
+            <h3>{c.name}<small>{c.role}</small></h3>
+            <p class="q">{c.note}</p>
+            <ul>{c.certs.slice(0, 3).map((x) => <li>{x}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+      <ul class="badges">
+        <li>강사 전원 연안체험활동 안전교육 이수</li>
+        <li>강사 책임보험 가입</li>
+        <li>해양경찰청 수중레저사업 등록</li>
+      </ul>
+      <p style="margin-top:32px"><a class="btn btn-y" href="/about">강사 소개 보기</a></p>
+    </div>
+  </section>
+
+  <section class="sec" id="pools">
+    <div class="in">
+      <span class="eyebrow">LOCATIONS</span>
+      <h2>나에게 가까운<br /><em>수업 장소를 찾아보세요</em></h2>
+      <p class="sub">수업이 진행되는 서울·경기 다이빙 풀이에요. 과정에 따라 수업 장소가 달라요.</p>
+      <ul class="pools">
+        {pools.map((p) => <li class={parseInt(p.depth) > 5 ? "deep" : ""}><div><b>{p.name}</b><span>{p.area}</span></div><span class="depth">{p.depth}</span></li>)}
+      </ul>
+      <p class="note">숫자는 최대 수심이에요. 풀장 입장료는 수강료와 따로 내요.</p>
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="in split">
+      <img src="/images/free-lv3-crop.jpg" alt="깊은 수심에서 프리다이빙하는 모습" loading="lazy" width="808" height="500" />
+      <div>
+        <span class="eyebrow">ADVANCED</span>
+        <h2>더 깊이 배우고 싶은<br />다이버를 위해</h2>
+        <ul>
+          <li>프리다이빙 레벨 3 어드밴스 · 레벨 4 마스터</li>
+          <li>프리다이빙 · 머메이드 강사 과정</li>
+          <li>스쿠버 어드밴스 · 레스큐 다이버</li>
+          <li>응급처치 교육 일반 · 강사 과정</li>
+        </ul>
+        <a class="btn" href="/programs">심화 과정 보기</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="in">
+      <h2>첫 다이빙, 일정부터 확인해보세요</h2>
+      <p>스마트스토어에서 결제한 뒤 톡톡 · 카카오채널 · 문자로 날짜와 장소를 맞춰요.</p>
+      <div class="btns">
+        <a class="btn btn-y" href={STORE}>예약 가능한 일정 보기</a>
+        <a class="btn btn-line" href="/programs#booking">예약 방법 보기</a>
+      </div>
+    </div>
+  </section>
+</Page>

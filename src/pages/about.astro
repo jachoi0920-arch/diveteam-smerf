@@ -1,0 +1,82 @@
+---
+import Page from "../components/Page.astro";
+import site from "../site.json";
+import { STORE, instructors } from "../data/store";
+const pg = site.pages.find((p) => p.id === "about")!;
+---
+<Page id="about">
+  <section class="ph">
+    <img src="/images/mermaid-crop.jpg" alt="" />
+    <div class="in">
+      <p class="crumb"><a href="/">홈</a> › {pg.menu}</p>
+      <h1>{pg.h1}</h1>
+      <p class="lead">{pg.lead}</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="in split">
+      <div>
+        <span class="eyebrow">ABOUT</span>
+        <h2>다이브팀 스머프</h2>
+        <p class="lede">잠실·성남·수원·용인·시흥·가평의 다이빙 풀에서 체험과 자격 과정을 운영해요. 종목과 과정에 따라 수업 장소와 참여 조건이 달라요. 각 과정의 상세 안내에서 나에게 맞는 수업을 확인할 수 있어요.</p>
+      </div>
+      <img src="/images/family-crop.jpg" alt="물속에서 스노클링하는 수업 장면" loading="lazy" width="808" height="500" />
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="in">
+      <span class="eyebrow">INSTRUCTORS</span>
+      <h2>강사 소개</h2>
+      <p class="sub">강사 트레이너 2명과 강사 1명이 함께해요.</p>
+      <div class="team">
+        {instructors.map((c) => (
+          <article class="coach">
+            <div class="ava" aria-hidden="true">{c.name.slice(0, 1)}</div>
+            <h3>{c.name}<small>{c.role}</small></h3>
+            <p class="q">{c.note}</p>
+            <ul>{c.certs.map((x) => <li>{x}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec dark">
+    <div class="in">
+      <span class="eyebrow">SAFETY</span>
+      <h2>안전하게 배우도록</h2>
+      <ul class="badges">
+        <li>강사 전원 연안체험활동 안전교육 이수</li>
+        <li>강사 전원 다이브어시스트 강사 책임보험 가입</li>
+        <li>응급처치 교육 과정 운영</li>
+        <li>해양경찰청 수중레저사업 등록</li>
+        <li>여행업 등록 · 보증보험 가입</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="in">
+      <span class="eyebrow">TOUR</span>
+      <h2>풀장 밖, 바다로</h2>
+      <p class="sub">수업을 마친 다이버와 국내외 다이빙 투어를 다녀요.</p>
+      <ul class="pools">
+        <li><div><b>국내</b><span>제주도 · 강원도 · 울릉도</span></div></li>
+        <li><div><b>해외</b><span>필리핀 · 인도네시아 · 일본 · 대만 · 사이판</span></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="in">
+      <h2>나에게 맞는 수업을 찾아보세요</h2>
+      <p>체험부터 강사 과정까지 종목별로 정리해 뒀어요.</p>
+      <div class="btns">
+        <a class="btn btn-y" href="/programs">프로그램 보기</a>
+        <a class="btn btn-line" href={STORE}>스마트스토어</a>
+      </div>
+    </div>
+  </section>
+</Page>

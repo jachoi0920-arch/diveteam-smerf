@@ -1,0 +1,298 @@
+{
+  "url": "https://diveteam-smerf.vercel.app",
+  "lang": "ko",
+  "name": "다이브팀 스머프",
+  "nameEn": "S-Mer-F",
+  "type": "brand",
+  "schemaType": "Organization",
+  "oneLine": "서울·경기에서 프리다이빙·스쿠버다이빙·머메이드 체험과 교육을 진행하는 다이브팀 스머프",
+  "introShort": "서울·경기 프리다이빙 · 스쿠버 · 머메이드 체험·교육, 다이브팀 스머프",
+  "keyword": "다이빙 체험 강습",
+  "area": "서울 · 경기",
+  "regulated": false,
+  "sameAs": [
+    "https://smartstore.naver.com/aquapartyroom",
+    "https://blog.naver.com/diveteamsmerf",
+    "https://www.instagram.com/diveteam_s.mer.f",
+    "https://map.naver.com/p/entry/place/1527538839"
+  ],
+  "contact": {
+    "email": "",
+    "phone": "",
+    "address": "",
+    "hours": ""
+  },
+  "verify": {
+    "google": "",
+    "naver": "",
+    "bing": ""
+  },
+  "ogImage": "/og.png",
+  "design": {
+    "mood": "깔끔한 · 믿음직한 · 전문적인",
+    "colors": {
+      "main": "#1f3a5f",
+      "accent": "#3b82c4",
+      "bg": "#ffffff",
+      "ink": "#1b2330"
+    },
+    "colorName": "남색 + 흰색",
+    "fonts": {
+      "heading": "Pretendard",
+      "body": "Pretendard"
+    },
+    "fontName": "프리텐다드 하나로",
+    "shape": "square"
+  },
+  "pages": [
+    {
+      "id": "home",
+      "slug": "/",
+      "menu": "홈",
+      "inMenu": false,
+      "title": "다이브팀 스머프 | 서울·경기 다이빙 체험·강습",
+      "description": "프리다이빙·스쿠버·머메이드, 어떤 다이빙이 궁금하세요? 다이브팀 스머프의 서울·경기 체험·교육 과정과 수업 장소를 확인하세요.",
+      "h1": "늘 보던 바다를, 나의 취미로.",
+      "lead": "프리다이빙 · 스쿠버다이빙 · 머메이드. 첫 체험부터 새로운 취미의 시작까지. 서울·경기에서 다이브팀 스머프와 다이빙을 배워보세요.",
+      "sections": [
+        {
+          "type": "text",
+          "heading": "해보고 싶은 마음, 궁금한 것도 많으니까.",
+          "body": "수영 실력, 준비물, 수업 장소와 비용까지.\n첫 다이빙 전에 궁금한 내용을 확인해보세요."
+        },
+        {
+          "type": "cta",
+          "label": "처음이라면 여기부터",
+          "href": "/programs"
+        },
+        {
+          "type": "cards",
+          "heading": "어떤 다이빙부터 시작해볼까요?",
+          "items": [
+            {
+              "title": "프리다이빙",
+              "body": "내 호흡에 집중하는 시간. 체험부터 레벨 1~4, 강사 과정까지 있어요."
+            },
+            {
+              "title": "스쿠버다이빙",
+              "body": "수중 세계를 가까이 만나는 시간. 체험부터 오픈워터 · 어드밴스 · 레스큐까지 있어요."
+            },
+            {
+              "title": "머메이드",
+              "body": "물속에서 표현하는 새로운 움직임. 체험 · 레벨1부터 강사 과정까지 있어요."
+            }
+          ]
+        },
+        {
+          "type": "cta",
+          "label": "프로그램별 안내 보기",
+          "href": "/programs"
+        },
+        {
+          "type": "text",
+          "heading": "누구에게 배우는지도 중요하니까",
+          "body": "강사 트레이너 2명과 강사 1명이 PADI · AIDA · PSA · SSI 과정을 가르쳐요. 강사 전원이 연안체험활동 안전교육을 이수했고, 강사 책임보험에 가입했어요."
+        },
+        {
+          "type": "cta",
+          "label": "강사 소개 보기",
+          "href": "/about"
+        },
+        {
+          "type": "list",
+          "heading": "나에게 가까운 수업 장소를 찾아보세요",
+          "items": [
+            "잠실",
+            "성남",
+            "수원",
+            "용인",
+            "시흥",
+            "가평"
+          ]
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "body": "수업이 진행되는 다이빙 풀이에요. 과정에 따라 수업 장소와 참여 조건이 달라요."
+        },
+        {
+          "type": "cta",
+          "label": "수업 장소 확인하기",
+          "href": "/programs"
+        },
+        {
+          "type": "text",
+          "heading": "더 깊이 배우고 싶은 다이버를 위해",
+          "body": "프리다이빙 레벨 3 · 4와 강사 과정, 스쿠버 어드밴스 · 레스큐, 머메이드 강사 과정을 종목별로 안내해요."
+        },
+        {
+          "type": "cta",
+          "label": "심화 과정 보기",
+          "href": "/programs"
+        },
+        {
+          "type": "text",
+          "heading": "첫 다이빙, 일정부터 확인해보세요",
+          "body": "과정별 가격과 예약 가능한 일정은 스마트스토어에서 확인하고 예약할 수 있어요."
+        },
+        {
+          "type": "cta",
+          "label": "예약 가능한 일정 보기",
+          "href": "https://smartstore.naver.com/aquapartyroom"
+        }
+      ],
+      "cta": {
+        "label": "체험 프로그램 보기",
+        "href": "/programs"
+      }
+    },
+    {
+      "id": "programs",
+      "slug": "/programs",
+      "menu": "프로그램",
+      "inMenu": true,
+      "title": "서울 경기 다이빙 체험과 강습 | 다이브팀 스머프",
+      "description": "프리다이빙 · 스쿠버 · 머메이드를 체험부터 강사 과정까지 배워요. 잠실 · 수원 등 수도권 6곳 다이빙 풀에서 수업해요.",
+      "h1": "프리다이빙 · 스쿠버다이빙 · 머메이드, 체험부터 강사 과정까지",
+      "lead": "종목마다 체험으로 시작해 단계별 자격 과정으로 이어 가요. 가격과 일정은 스마트스토어에서 확인해요.",
+      "sections": [
+        {
+          "type": "steps",
+          "heading": "프리다이빙",
+          "items": [
+            "체험 (원데이 클래스)",
+            "레벨 1",
+            "레벨 2",
+            "레벨 3 (어드밴스)",
+            "레벨 4 (마스터)",
+            "강사 과정"
+          ]
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "body": "PADI · AIDA · PSA · SSI 중 원하는 단체로 과정을 고를 수 있어요."
+        },
+        {
+          "type": "steps",
+          "heading": "스쿠버다이빙",
+          "items": [
+            "체험 (원데이 클래스)",
+            "오픈워터",
+            "어드밴스",
+            "레스큐"
+          ]
+        },
+        {
+          "type": "steps",
+          "heading": "머메이드다이빙",
+          "items": [
+            "체험 · 레벨 1 (원데이 클래스)",
+            "단계별 강습부터 강사 과정까지"
+          ]
+        },
+        {
+          "type": "list",
+          "heading": "아이 · 가족과 함께",
+          "items": [
+            "키즈 · 주니어 프리다이빙 · 스노클링 수업 (만 4세~만 15세)",
+            "한 가족만을 위한 프리다이빙 · 스노클링 원데이 클래스 (1~4인)"
+          ]
+        },
+        {
+          "type": "list",
+          "heading": "수업 장소",
+          "items": [
+            "잠실",
+            "성남",
+            "수원",
+            "용인",
+            "시흥",
+            "가평"
+          ]
+        },
+        {
+          "type": "text",
+          "heading": "",
+          "body": "모두 수업이 진행되는 다이빙 풀이에요. 과정에 따라 수업 장소가 달라요."
+        },
+        {
+          "type": "list",
+          "heading": "다이빙 투어",
+          "items": [
+            "국내: 제주도 · 강원도 · 울릉도",
+            "해외: 필리핀 · 인도네시아 · 일본 · 대만 · 사이판"
+          ]
+        }
+      ],
+      "cta": {
+        "label": "스마트스토어에서 예약하기",
+        "href": "https://smartstore.naver.com/aquapartyroom"
+      }
+    },
+    {
+      "id": "about",
+      "slug": "/about",
+      "menu": "강사 소개",
+      "inMenu": true,
+      "title": "강사 훈련관이 함께하는 다이빙 팀 | 다이브팀 스머프",
+      "description": "강사 트레이너 2명과 강사 1명이 PADI · AIDA · PSA · SSI 과정을 가르쳐요. 전원 안전교육 이수 · 책임보험 가입.",
+      "h1": "강사 3명이 함께하는 서울·경기 다이빙 팀",
+      "lead": "다이브팀 스머프(S-Mer-F)는 서울·경기 지역에서 프리다이빙, 스쿠버다이빙, 머메이드 교육을 진행하는 다이빙 팀입니다.",
+      "sections": [
+        {
+          "type": "text",
+          "heading": "다이브팀 스머프",
+          "body": "잠실·성남·수원·용인·시흥·가평의 다이빙 풀에서 체험과 자격 과정 등을 운영하며, 종목과 과정에 따라 수업 장소와 참여 조건이 달라집니다. 각 과정의 상세 안내에서 나에게 맞는 수업을 확인할 수 있습니다."
+        },
+        {
+          "type": "cards",
+          "heading": "강사 소개",
+          "items": [
+            {
+              "title": "신영목 · 강사 트레이너",
+              "body": "10년차 프리다이빙 강사 훈련관. PADI · PSA 프리다이빙 강사 훈련관, PADI · PSA 머메이드다이빙 강사 훈련관, EFR · PSA 응급처치법 강사 훈련관, AIDA 프리다이빙 강사, PADI 스쿠버다이빙 강사."
+            },
+            {
+              "title": "권영채 · 강사 트레이너",
+              "body": "펀다이빙에서 딥다이빙까지. SSI · CMAS 프리다이빙 강사 훈련관, SSI 머메이드 강사 훈련관, SSI React Right(응급처치법) 강사 훈련관, AIDA · PADI · MOLCHANOVS 강사, SSI 스쿠버 강사 · SSI 생존수영 강사."
+            },
+            {
+              "title": "김초롱 · 강사",
+              "body": "AIDA · PADI · PSA 프리다이빙 강사, PADI · PSA 머메이드다이빙 강사, PSA 유스 프리다이빙 강사, EFR 응급처치법 강사, 라이프가드(인명구조요원)."
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "heading": "안전",
+          "items": [
+            "강사 전원 연안체험활동 안전교육 이수",
+            "강사 전원 다이브어시스트 강사 책임보험 가입",
+            "응급처치 교육 과정 운영"
+          ]
+        }
+      ],
+      "cta": {
+        "label": "프로그램 보기",
+        "href": "/programs"
+      }
+    },
+    {
+      "id": "blog",
+      "slug": "/blog",
+      "menu": "다이빙 이야기",
+      "inMenu": true,
+      "title": "다이빙 수업 이야기와 기록 | 다이브팀 스머프",
+      "description": "다이브팀 스머프의 수업 · 투어 기록과 다이빙 정보를 모아요.",
+      "h1": "다이빙 이야기",
+      "lead": "수업 · 투어 기록과 첫 다이빙 전에 알아 두면 좋은 정보를 모아요.",
+      "sections": [],
+      "cta": {
+        "label": "프로그램 보기",
+        "href": "/programs"
+      }
+    }
+  ],
+  "locales": {}
+}

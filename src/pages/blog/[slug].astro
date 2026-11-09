@@ -1,0 +1,34 @@
+---
+import Base from "../../layouts/Base.astro";
+import site from "../../site.json";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = (await getCollection("blog")).filter((p) => !p.data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const path = "/blog/" + post.id;
+const blog = site.pages.find((p) => p.id === "blog")!;
+const orgId = site.url + "/#" + (site.type === "person" ? "person" : "org");
+const schema = [
+  { "@context": "https://schema.org", "@type": "BlogPosting", headline: post.data.title, description: post.data.description,
+    datePublished: post.data.date.toISOString().slice(0, 10), dateModified: (post.data.updated || post.data.date).toISOString().slice(0, 10),
+    mainEntityOfPage: site.url + path, author: { "@id": orgId }, publisher: { "@id": orgId }, image: site.url + site.ogImage, inLanguage: "ko" },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "홈", item: site.url + "/" },
+    { "@type": "ListItem", position: 2, name: blog.menu, item: site.url + blog.slug },
+    { "@type": "ListItem", position: 3, name: post.data.title, item: site.url + path },
+  ] },
+];
+---
+<Base title={post.data.title + " | " + site.name} description={post.data.description} path={path} schema={schema} ogType="article">
+<div class="in" style="padding-bottom:72px">
+  <p class="crumb"><a href="/">홈</a> › <a href={blog.slug}>{blog.menu}</a></p>
+  <article class="post">
+    <div class="page-h"><h1>{post.data.title}</h1><p class="lead"><time datetime={post.data.date.toISOString().slice(0, 10)}>{post.data.date.toISOString().slice(0, 10)}</time></p></div>
+    <Content />
+  </article>
+</div>
+</Base>

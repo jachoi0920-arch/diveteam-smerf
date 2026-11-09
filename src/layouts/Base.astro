@@ -1,0 +1,68 @@
+---
+// 모든 페이지의 머리(head). 제목 · 설명 · 대표 주소 · 공유 카드 · 구조화 데이터를 여기서 넣는다.
+import site from "../site.json";
+import "../styles/site.css";
+import "../styles/theme.css";
+import { STORE, contact } from "../data/store";
+
+interface Props { title: string; description: string; path: string; lang?: string; noindex?: boolean; schema?: object[]; alternates?: { lang: string; path: string }[]; ogType?: string }
+const { title, description, path, lang = "ko", noindex = false, schema = [], alternates = [], ogType = "website" } = Astro.props;
+const abs = (p: string) => site.url + (p === "/" ? "/" : p);
+const canonical = abs(path);
+const og = site.url + site.ogImage;
+const fonts: string[] = ["https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"];
+const menu = site.pages.filter((p) => p.inMenu);
+const here = Astro.url.pathname.replace(/\.html$/, "").replace(/\/index$/, "/") || "/";
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex" />}
+{alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={abs(a.path)} />)}
+{alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={abs("/")} />}
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={og} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+{site.verify.google && <meta name="google-site-verification" content={site.verify.google} />}
+{site.verify.naver && <meta name="naver-site-verification" content={site.verify.naver} />}
+{site.verify.bing && <meta name="msvalidate.01" content={site.verify.bing} />}
+{fonts.map((f) => <link rel="stylesheet" href={f} />)}
+{schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="brand" href="/"><img src="/images/logo.png" alt="" width="130" height="40" /><span class="sr">{site.name}</span></a>
+  <nav aria-label="메뉴"><ul>
+    {menu.map((p) => <li><a href={p.slug} aria-current={here === p.slug || here.startsWith(p.slug + "/") ? "page" : undefined}>{p.menu}</a></li>)}
+    {Object.entries(site.locales).map(([code, l]) => <li><a href={"/" + code} hreflang={code}>{l.menu}</a></li>)}
+  </ul></nav>
+  <a class="btn btn-y btn-sm" href={STORE}>예약하기</a>
+</div></header>
+<main><slot /></main>
+<footer class="foot"><div class="in">
+  <div class="foot-brand">
+    <img src="/images/logo.png" alt="" width="130" height="40" />
+    <p>{site.introShort}</p>
+  </div>
+  <div class="foot-cols">
+    <div><b>문의</b><p>전화 · 문자 <a href={"tel:" + contact.phone.replace(/-/g, "")}>{contact.phone}</a><br />카카오채널 「{contact.kakao}」 · 네이버 톡톡</p></div>
+    <div><b>바로가기</b><ul>{site.sameAs.map((u) => <li><a href={u} rel="me">{u.includes("smartstore") ? "스마트스토어" : u.includes("blog") ? "블로그" : u.includes("instagram") ? "인스타그램" : "네이버 플레이스"}</a></li>)}</ul></div>
+  </div>
+  <p class="legal">{contact.company} · 대표 {contact.ceo} · © {new Date().getFullYear()} {site.name}</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,103 @@
+---
+import Page from "../components/Page.astro";
+import site from "../site.json";
+import { STORE, PRODUCT, PRICE_DATE, contact, disciplines, products, family, pools, faq, refund } from "../data/store";
+const pg = site.pages.find((p) => p.id === "programs")!;
+const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) };
+---
+<Page id="programs" extraSchema={[faqSchema]}>
+  <section class="ph">
+    <img src="/images/scuba-ow-crop.jpg" alt="" />
+    <div class="in">
+      <p class="crumb"><a href="/">홈</a> › {pg.menu}</p>
+      <h1>{pg.h1}</h1>
+      <p class="lead">{pg.lead}</p>
+      <ul class="jump">
+        {disciplines.map((d) => <li><a href={"#" + d.id}>{d.name}</a></li>)}
+        <li><a href="#family">아이 · 가족</a></li>
+        <li><a href="#faq">자주 묻는 질문</a></li>
+      </ul>
+    </div>
+  </section>
+
+  {disciplines.map((d, i) => (
+    <section class={"sec" + (i % 2 ? " tint" : "")} id={d.id}>
+      <div class="in track">
+        <div class="side">
+          <img src={d.img} alt={d.name + " 수업 장면"} loading="lazy" width="808" height="500" />
+          <span class="eyebrow">{d.tagline}</span>
+          <h2>{d.name}</h2>
+          <ol>{d.path.map((s) => <li>{s}</li>)}</ol>
+          <p class="org">자격 단체 {d.orgs}</p>
+        </div>
+        <ul class="plist">
+          {products[d.id].map((p) => (
+            <li>
+              <h3>{p.name}</h3>
+              <p class="meta"><span>{p.sessions}</span>{p.detail}</p>
+              <div class="price"><b>{p.price}</b><a href={PRODUCT(p.id)}>스토어에서 보기 →</a></div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  ))}
+
+  <section class="sec" id="family">
+    <div class="in">
+      <span class="eyebrow">KIDS · FAMILY</span>
+      <h2>아이와 함께, <em>가족끼리만</em></h2>
+      <p class="sub">아이 수업과 한 가족만을 위한 원데이 클래스가 따로 있어요.</p>
+      <div class="fam">
+        {family.map((f) => (
+          <article>
+            <img src={f.img} alt={f.name + " 수업 장면"} loading="lazy" width="808" height="500" />
+            <div class="body">
+              <h3>{f.name}</h3>
+              <p>{f.detail}</p>
+              <div class="row"><b>{f.price}</b><a class="btn btn-sm" href={PRODUCT(f.id)}>스토어에서 보기</a></div>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="note">가격은 {PRICE_DATE} 스마트스토어 판매가예요. 풀장마다 나이에 따른 입장 제한이 있을 수 있어요.</p>
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="in">
+      <span class="eyebrow">LOCATIONS</span>
+      <h2>수업 장소</h2>
+      <p class="sub">서울·경기 다이빙 풀 7곳에서 수업해요. 과정에 따라 수업 장소가 달라요.</p>
+      <ul class="pools">
+        {pools.map((p) => <li class={parseInt(p.depth) > 5 ? "deep" : ""}><div><b>{p.name}</b><span>{p.area}</span></div><span class="depth">{p.depth}</span></li>)}
+      </ul>
+      <p class="note">숫자는 최대 수심이에요. 풀장 입장료와 슈트 대여비는 수강료와 따로 내요.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="booking">
+    <div class="in">
+      <span class="eyebrow">BOOKING</span>
+      <h2>예약은 이렇게 해요</h2>
+      <ol class="flow">
+        <li><b>스토어에서 결제</b><p>원하는 과정을 골라 참여 인원 수만큼 결제해요.</p></li>
+        <li><b>날짜 · 장소 보내기</b><p>네이버 톡톡 · 카카오채널 「{contact.kakao}」 · 문자({contact.phone})로 원하는 날짜와 장소를 보내요.</p></li>
+        <li><b>강사와 일정 확정</b><p>강사와 맞춘 날짜와 장소에서 수업해요.</p></li>
+      </ol>
+      <h3 style="margin:48px 0 16px;font-size:20px">일정 변경 · 환불</h3>
+      <ul class="refund">{refund.map((r) => <li>{r}</li>)}</ul>
+      <p style="margin-top:32px"><a class="btn btn-y" href={STORE}>스마트스토어에서 예약하기</a></p>
+    </div>
+  </section>
+
+  <section class="sec tint" id="faq">
+    <div class="in">
+      <span class="eyebrow">FAQ</span>
+      <h2>자주 묻는 질문</h2>
+      <div class="qa">
+        {faq.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
+      </div>
+    </div>
+  </section>
+</Page>

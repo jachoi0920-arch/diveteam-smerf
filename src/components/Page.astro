@@ -1,0 +1,60 @@
+---
+// 페이지 하나. 홈은 첫 화면(한 줄 + 답 + 다음 행동), 나머지는 제목 + 이동경로.
+import Base from "../layouts/Base.astro";
+import Blocks from "./Blocks.astro";
+import site from "../site.json";
+
+interface Props { id: string; locale?: string; extraSchema?: object[] }
+const { id, locale, extraSchema = [] } = Astro.props;
+const base = site.pages.find((p) => p.id === id)!;
+const l = locale ? (site.locales as any)[locale] : null;
+const pg = l ? { ...base, slug: "/" + locale, title: l.title, description: l.description, h1: l.h1, lead: l.lead, sections: l.sections, cta: l.cta } : base;
+const isHome = id === "home";
+const abs = (p: string) => site.url + (p === "/" ? "/" : p);
+const orgId = site.url + "/#" + (site.type === "person" ? "person" : "org");
+
+const who: any = {
+  "@context": "https://schema.org",
+  "@type": site.schemaType,
+  "@id": orgId,
+  name: site.name,
+  url: site.url + "/",
+  description: site.oneLine,
+  image: site.url + site.ogImage,
+};
+if (site.nameEn) who.alternateName = site.nameEn;
+if (site.sameAs.length) who.sameAs = site.sameAs;
+if (site.type !== "person") who.logo = site.url + "/icon-512.png";
+if (site.contact.phone) who.telephone = site.contact.phone;
+if (site.contact.email) who.email = site.contact.email;
+if (site.contact.address) who.address = { "@type": "PostalAddress", streetAddress: site.contact.address, addressCountry: "KR" };
+if (site.area && site.schemaType !== "Person" && site.schemaType !== "Organization") who.areaServed = site.area;
+
+const schema: object[] = [];
+if (isHome) {
+  schema.push(who, { "@context": "https://schema.org", "@type": "WebSite", name: site.name, url: site.url + "/", inLanguage: locale || "ko", publisher: { "@id": orgId } });
+} else {
+  schema.push({ "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+    { "@type": "ListItem", position: 1, name: "홈", item: abs("/") },
+    { "@type": "ListItem", position: 2, name: pg.menu || pg.title, item: abs(pg.slug) },
+  ] });
+}
+const codes = Object.keys(site.locales);
+const alternates = isHome && codes.length ? [{ lang: "ko", path: "/" }, ...codes.map((c) => ({ lang: c, path: "/" + c }))] : [];
+---
+<Base title={pg.title} description={pg.description} path={pg.slug} lang={locale || "ko"} schema={[...schema, ...extraSchema]} alternates={alternates}>
+  {Astro.slots.has("default") ? <slot /> : (
+    <div class="in">
+      {isHome ? (
+        <div class="hero-plain"><h1>{pg.h1}</h1>{pg.lead && <p class="lead">{pg.lead}</p>}{pg.cta && <a class="btn" href={pg.cta.href}>{pg.cta.label}</a>}</div>
+      ) : (
+        <>
+          <p class="crumb"><a href="/">홈</a> › {pg.menu || pg.title}</p>
+          <div class="page-h"><h1>{pg.h1}</h1>{pg.lead && <p class="lead">{pg.lead}</p>}</div>
+        </>
+      )}
+      <Blocks sections={pg.sections} />
+      {!isHome && pg.cta && <section class="b"><a class="btn" href={pg.cta.href}>{pg.cta.label}</a></section>}
+    </div>
+  )}
+</Base>

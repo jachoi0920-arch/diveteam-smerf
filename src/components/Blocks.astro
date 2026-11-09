@@ -1,0 +1,17 @@
+---
+// 페이지 본문 칸. site.json 의 sections 를 순서대로 그린다.
+interface Props { sections: any[] }
+const { sections } = Astro.props;
+---
+{sections.map((s) => (
+  <section class="b">
+    {s.heading && <h2>{s.heading}</h2>}
+    {s.type === "text" && String(s.body || "").split(/\n\n+/).map((p) => <p>{p}</p>)}
+    {s.type === "list" && <ul class="list">{(s.items || []).map((i) => <li>{i}</li>)}</ul>}
+    {s.type === "steps" && <ol class="steps">{(s.items || []).map((i) => <li>{i}</li>)}</ol>}
+    {s.type === "cards" && <ul class="cards">{(s.items || []).map((i) => <li><h3>{i.title}</h3>{i.body && <p>{i.body}</p>}</li>)}</ul>}
+    {s.type === "faq" && <div class="faq">{(s.items || []).map((i) => <><h3>{i.q}</h3><p>{i.a}</p></>)}</div>}
+    {s.type === "info" && <dl class="info">{(s.items || []).map((i) => <><dt>{i.k}</dt><dd>{i.href ? <a href={i.href}>{i.v}</a> : i.v}</dd></>)}</dl>}
+    {s.type === "cta" && <p><a class="btn" href={s.href}>{s.label}</a></p>}
+  </section>
+))}
