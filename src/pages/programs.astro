@@ -1,7 +1,7 @@
 ---
 import Page from "../components/Page.astro";
 import site from "../site.json";
-import { STORE, PRODUCT, PRICE_DATE, contact, disciplines, products, family, pools, faq, refund } from "../data/store";
+import { STORE, PRODUCT, contact, disciplines, products, family, lesson, pools, faq, refund } from "../data/store";
 const pg = site.pages.find((p) => p.id === "programs")!;
 const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) };
 ---
@@ -29,13 +29,14 @@ const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEn
           <h2>{d.name}</h2>
           <ol>{d.path.map((s) => <li>{s}</li>)}</ol>
           <p class="org">자격 단체 {d.orgs}</p>
+          <p class="from-side">체험 <b>{d.from}부터</b></p>
         </div>
         <ul class="plist">
           {products[d.id].map((p) => (
             <li>
               <h3>{p.name}</h3>
               <p class="meta"><span>{p.sessions}</span>{p.detail}</p>
-              <div class="price"><b>{p.price}</b><a href={PRODUCT(p.id)}>스토어에서 보기 →</a></div>
+              <div class="price">{p.id ? <a href={PRODUCT(p.id)}>가격 · 예약 보기 →</a> : <span class="soon">준비 중</span>}</div>
             </li>
           ))}
         </ul>
@@ -55,16 +56,24 @@ const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEn
             <div class="body">
               <h3>{f.name}</h3>
               <p>{f.detail}</p>
-              <div class="row"><b>{f.price}</b><a class="btn btn-sm" href={PRODUCT(f.id)}>스토어에서 보기</a></div>
+              <div class="row"><span><b>{f.from}</b>부터</span><a class="btn btn-sm" href={PRODUCT(f.id)}>가격 · 예약 보기</a></div>
             </div>
           </article>
         ))}
       </div>
-      <p class="note">가격은 {PRICE_DATE} 스마트스토어 판매가예요. 풀장마다 나이에 따른 입장 제한이 있을 수 있어요.</p>
+      <p class="note">가격은 할인으로 바뀔 수 있어 스마트스토어에서 확인해요. 풀장마다 나이에 따른 입장 제한이 있을 수 있어요.</p>
     </div>
   </section>
 
-  <section class="sec tint">
+  <section class="sec tint" id="lesson">
+    <div class="in">
+      <span class="eyebrow">HOW WE TEACH</span>
+      <h2>수업은 이렇게 해요</h2>
+      <dl class="lesson">{lesson.map((l) => <div><dt>{l.k}</dt><dd>{l.v}</dd></div>)}</dl>
+    </div>
+  </section>
+
+  <section class="sec">
     <div class="in">
       <span class="eyebrow">LOCATIONS</span>
       <h2>수업 장소</h2>
@@ -76,7 +85,7 @@ const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEn
     </div>
   </section>
 
-  <section class="sec" id="booking">
+  <section class="sec tint" id="booking">
     <div class="in">
       <span class="eyebrow">BOOKING</span>
       <h2>예약은 이렇게 해요</h2>
@@ -91,7 +100,7 @@ const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEn
     </div>
   </section>
 
-  <section class="sec tint" id="faq">
+  <section class="sec" id="faq">
     <div class="in">
       <span class="eyebrow">FAQ</span>
       <h2>자주 묻는 질문</h2>

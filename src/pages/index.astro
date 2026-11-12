@@ -1,7 +1,7 @@
 ---
 import Page from "../components/Page.astro";
-import { STORE, PRICE_DATE, disciplines, instructors, pools, faq } from "../data/store";
-const worries = faq.filter((f) => ["수영 못해도 할 수 있어요?", "물 공포증이 있어도 할 수 있나요?", "무엇을 챙겨 가요?", "아이는 몇 살부터 돼요?"].includes(f.q));
+import { STORE, REVIEW_DATE, stats, reviews, disciplines, instructors, pools, faq } from "../data/store";
+const worries = faq.filter((f) => ["수영 못해도 할 수 있어요?", "물 공포증이 있어도 할 수 있나요?", "해외여행 가기 전에 체험할 수 있나요?", "아이는 몇 살부터 돼요?"].includes(f.q));
 ---
 <Page id="home">
   <section class="hero">
@@ -19,12 +19,9 @@ const worries = faq.filter((f) => ["수영 못해도 할 수 있어요?", "물 �
 
   <div class="stats"><div class="in">
     <ul>
-      <li><b>599개</b><span>프리다이빙 체험 리뷰 · 평점 4.95</span></li>
-      <li><b>3명</b><span>강사 트레이너 2명 · 강사 1명</span></li>
-      <li><b>7곳</b><span>서울·경기 다이빙 풀 · 최대 수심 36m</span></li>
-      <li><b>4개 단체</b><span>PADI · AIDA · PSA · SSI 자격</span></li>
+      {stats.map((s) => <li><b>{s.n}</b><span>{s.t}</span></li>)}
     </ul>
-    <p class="note">리뷰 수는 {PRICE_DATE} 스마트스토어 기준이에요.</p>
+    <p class="note">후기 수는 {REVIEW_DATE} 스마트스토어 상품 후기를 합한 수예요.</p>
   </div></div>
 
   <section class="sec">
@@ -61,7 +58,7 @@ const worries = faq.filter((f) => ["수영 못해도 할 수 있어요?", "물 �
           </a>
         ))}
       </div>
-      <p class="note">가격은 {PRICE_DATE} 스마트스토어 판매가예요. 풀장 입장료는 따로예요.</p>
+      <p class="note">프리다이빙 체험 29,000원은 할인 적용 가격이에요. 가격은 할인으로 바뀔 수 있어 스마트스토어에서 확인해요. 풀장 입장료는 따로예요.</p>
     </div>
   </section>
 
@@ -86,6 +83,18 @@ const worries = faq.filter((f) => ["수영 못해도 할 수 있어요?", "물 �
         <li>해양경찰청 수중레저사업 등록</li>
       </ul>
       <p style="margin-top:32px"><a class="btn btn-y" href="/about">강사 소개 보기</a></p>
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="in">
+      <span class="eyebrow">REVIEWS</span>
+      <h2>먼저 시작한<br /><em>사람들의 이야기</em></h2>
+      <p class="sub">스마트스토어 후기 1,159개 중 일부예요. 이름은 가렸어요.</p>
+      <div class="reviews">
+        {reviews.map((r) => <figure><div class="stars" aria-label="별점 5점">★★★★★</div><blockquote>{r}</blockquote><figcaption>교육생 후기 · 스마트스토어</figcaption></figure>)}
+      </div>
+      <p style="margin-top:28px"><a class="btn" href={STORE}>스마트스토어에서 후기 더 보기</a></p>
     </div>
   </section>
 

@@ -199,7 +199,7 @@ p.sub{font-size:18px;color:var(--sub);margin:0 0 40px;max-width:40em}
 /* 푸터 */
 footer.foot{background:#071a33;color:#aebdd0;border:0;padding:56px 0 40px;font-size:15px}
 footer.foot .in{display:grid;grid-template-columns:1.2fr 2fr;gap:40px}
-footer.foot .foot-brand img{height:40px;width:auto;filter:brightness(0) invert(1);opacity:.9}
+footer.foot .foot-brand img{height:44px;width:auto;background:#fff;padding:6px 10px;border-radius:6px}
 footer.foot .foot-brand p{margin:14px 0 0;max-width:22em}
 footer.foot .foot-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
 footer.foot b{color:#fff;display:block;margin-bottom:8px}
@@ -212,3 +212,21 @@ footer.foot .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.1);pa
 
 /* 글 모음 · 404 같은 기본 페이지 */
 .hero-plain{padding:72px 0 40px}
+
+/* 후기 */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.reviews figure{margin:0;background:#fff;border-radius:var(--r);padding:28px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.reviews .stars{color:#f5b800;letter-spacing:2px;margin-bottom:12px}
+.reviews blockquote{margin:0 0 18px;font-size:17px;line-height:1.75;flex:1}
+.reviews figcaption{font-size:14px;color:var(--sub)}
+@media (max-width:900px){.reviews{grid-template-columns:1fr}}
+
+/* 수업 안내 */
+.lesson{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:0}
+.lesson div{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 24px}
+.lesson dt{font-size:14px;font-weight:800;color:var(--blue);margin-bottom:6px}
+.lesson dd{margin:0;font-size:17px;font-weight:600}
+@media (max-width:760px){.lesson{grid-template-columns:1fr}}
+.track .side .from-side{margin:10px 0 0;font-size:15px;color:var(--sub)}.track .side .from-side b{font-size:20px;color:var(--ink)}
+.plist .soon{font-size:14px;font-weight:700;color:var(--sub);background:var(--sky-2);padding:4px 10px;border-radius:999px}
+.fam .row span{color:var(--sub)}.fam .row span b{color:var(--ink);font-size:20px;margin-right:2px}
