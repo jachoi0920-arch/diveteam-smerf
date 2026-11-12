@@ -4,6 +4,7 @@ import site from "../site.json";
 import "../styles/site.css";
 import "../styles/theme.css";
 import { STORE, contact } from "../data/store";
+const GA_ID = "G-HH7L3TXHT4";
 
 interface Props { title: string; description: string; path: string; lang?: string; noindex?: boolean; schema?: object[]; alternates?: { lang: string; path: string }[]; ogType?: string }
 const { title, description, path, lang = "ko", noindex = false, schema = [], alternates = [], ogType = "website" } = Astro.props;
@@ -41,6 +42,18 @@ const here = Astro.url.pathname.replace(/\.html$/, "").replace(/\/index$/, "/") 
 {site.verify.naver && <meta name="naver-site-verification" content={site.verify.naver} />}
 {site.verify.bing && <meta name="msvalidate.01" content={site.verify.bing} />}
 {fonts.map((f) => <link rel="stylesheet" href={f} />)}
+<!-- GA4 · 스마트스토어로 가는 링크를 누르면 store_click 으로 기록한다 -->
+<script async src={"https://www.googletagmanager.com/gtag/js?id=" + GA_ID}></script>
+<script is:inline define:vars={{ GA_ID }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag("js", new Date());
+  gtag("config", GA_ID);
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest && e.target.closest('a[href*="smartstore.naver.com"]');
+    if (a) gtag("event", "store_click", { link_url: a.href, link_text: a.textContent.trim(), page_path: location.pathname });
+  });
+</script>
 {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
 </head>
 <body>
